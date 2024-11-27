@@ -1,3 +1,6 @@
+import TodoListItem from "./TodoListItem";
+import PropTypes from 'prop-types'
+
 const toDoList = [
   {id: 1, title: 'submit assignment'},
   {id: 2, title: 'submit chapter'},
@@ -9,11 +12,20 @@ const TodoList = () =>{
         <>
             <ul>
                 {toDoList.map((item) => (
-                <li key={item.id}>{item.title}</li>
+                    <TodoListItem key={item.id} todo={item}/>
                 ))}
             </ul>
         </>
     );
 }
+
+TodoList.propTypes = {
+    todos: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            title: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+};
 
 export default TodoList;
