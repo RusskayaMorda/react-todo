@@ -4,6 +4,7 @@ import InputWithLabel from './InputWithLabel';
 
 const AddTodoForm = (props) =>{
     const [todoTitle, setTodoTitle] = useState('');
+    const [shouldFocus, setShouldFocus] = useState(true)
 
     const handleAddTodo = (event) => {
         event.preventDefault();
@@ -13,6 +14,8 @@ const AddTodoForm = (props) =>{
         }
         props.onAddTodo(newTodo);
         setTodoTitle('');
+        setShouldFocus(false)
+        setTimeout(()=>setShouldFocus(true),0)
     }
 
         const handleTitleChange = (event) => {
@@ -26,6 +29,7 @@ const AddTodoForm = (props) =>{
                     id="todoTitle"
                     value = {todoTitle}
                     onChange={handleTitleChange}
+                    shouldFocus={shouldFocus}
                 >
                 New task
                 </InputWithLabel>

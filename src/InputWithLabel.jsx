@@ -2,12 +2,14 @@ import React from "react";
 import {useRef, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
-const InputWithLabel = ({id, value, onChange, children}) => {
+const InputWithLabel = ({id, value, onChange, children, shouldFocus}) => {
     const inputRef = useRef();
 
     useEffect(()=>{
-        inputRef.current.focus();
-    },[value])
+        if (shouldFocus && inputRef.current){
+            inputRef.current.focus();
+        }
+    },[shouldFocus])
     return(
         <React.Fragment>
             <label htmlFor={id}>{children}</label>
@@ -21,6 +23,7 @@ InputWithLabel.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
+    shouldFocus: PropTypes.bool,
 };
 
 export default InputWithLabel;
