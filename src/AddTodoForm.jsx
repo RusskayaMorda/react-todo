@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react';
+import InputWithLabel from './InputWithLabel';
 
 const AddTodoForm = (props) =>{
     const [todoTitle, setTodoTitle] = useState('');
+    const [shouldFocus, setShouldFocus] = useState(true)
 
     const handleAddTodo = (event) => {
         event.preventDefault();
@@ -12,6 +14,8 @@ const AddTodoForm = (props) =>{
         }
         props.onAddTodo(newTodo);
         setTodoTitle('');
+        setShouldFocus(false)
+        setTimeout(()=>setShouldFocus(true),0)
     }
 
         const handleTitleChange = (event) => {
@@ -21,9 +25,16 @@ const AddTodoForm = (props) =>{
     return(
         <>
             <form onSubmit={handleAddTodo}>
-                <label htmlFor="TodoTitle">Title</label>
-                <input type="text" id="TodoTitle" name="title" value={todoTitle} onChange={handleTitleChange}/>
-                <button type="submit">Add</button>
+                <InputWithLabel
+                    id="todoTitle"
+                    value = {todoTitle}
+                    onChange={handleTitleChange}
+                    shouldFocus={shouldFocus}
+                >
+                New task
+                </InputWithLabel>
+                
+                <button type='submit'>Add</button>
             </form>
         </>
     )

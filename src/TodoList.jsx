@@ -1,12 +1,12 @@
 import TodoListItem from "./TodoListItem";
 import PropTypes from 'prop-types'
 
-const TodoList = (props) =>{
+const TodoList = ({todoList, onRemoveTodo}) =>{
     return (
         <>
             <ul>
-                {props.todoList.map((item) => (
-                    <TodoListItem key={item.id} todo={item}/>
+                {todoList.map((item) => (
+                    <TodoListItem key={item.id} todo={item} onRemoveTodo={onRemoveTodo}/>
                 ))}
             </ul>
         </>
@@ -20,6 +20,7 @@ TodoList.propTypes = {
             title: PropTypes.string.isRequired,
         })
     ).isRequired,
+    onRemoveTodo: PropTypes.func.isRequired
 };
 
 export default TodoList;
