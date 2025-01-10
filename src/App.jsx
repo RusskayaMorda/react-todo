@@ -19,6 +19,10 @@ function App() {
       setTodoList(result.data.todoList)
       setIsLoading(false)
     })
+    .catch((error)=>{
+      console.error('Error fetching data', error)
+      setIsLoading(false);
+    })
   })
 
   useEffect(()=>{
