@@ -128,8 +128,7 @@ useEffect(() => {
         <Route path="/" element={<React.Fragment>{/* текущий JSX */}</React.Fragment>} />
         <Route path="/new" element={<h1>New Todo List</h1>} />
       </Routes>
-    </BrowserRouter>
-    
+    </BrowserRouter> 
   )
 }
 
