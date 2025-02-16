@@ -1,6 +1,6 @@
-import './App.css'
-import TodoList from './toDoList.jsx'
-import AddTodoForm from './AddTodoForm.jsx'
+import './components/App.css'
+import TodoList from './components/toDoList.jsx'
+import AddTodoForm from './components/AddTodoForm.jsx'
 import { useState, useEffect } from 'react'
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,6 +19,7 @@ function App() {
 
   const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}?sort[0][field]=title&sort[0][direction]=desc`;
 
+
   try {
       const response = await fetch(url, options);
 
@@ -27,11 +28,14 @@ function App() {
       }
 
       const data = await response.json();
+      console.log("Raw Airtable data:", data.records);
       const todos = data.records
           .map(record => ({
           title: record.fields.title,
           id: record.id,
-      }));
+          createdTime: record.createdTime,
+      }))
+      .sort((a, b) => new Date(a.createdTime) - new Date(b.createdTime));      
 
       setTodoList(todos);
       setIsLoading(false);
