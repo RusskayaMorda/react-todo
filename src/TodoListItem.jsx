@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types'
+import style from './TodoListItem.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 const TodoListItem = ({todo, onRemoveTodo}) => {
     return(
-        <li>{todo.title}{""} <button type='button' onClick={() => onRemoveTodo(todo.id)}>remove</button></li>
+        <li className={style.ListItem}>{todo.title}{""} <button type='button' onClick={() => onRemoveTodo(todo.id)}><FontAwesomeIcon icon={faTrash} /></button></li>
     )
 }
 
