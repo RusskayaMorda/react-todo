@@ -6,7 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const TodoListItem = ({todo, onRemoveTodo}) => {
     return(
-        <li className={style.ListItem}>{todo.title}{""} <button type='button' onClick={() => onRemoveTodo(todo.id)}><FontAwesomeIcon icon={faTrash} /></button></li>
+        <li className={style.ListItem}>{todo.title}{""} <button type='button' className="trashButton" onClick={() => onRemoveTodo(todo.id)}><FontAwesomeIcon icon={faTrash} /></button></li>
     )
 }
 
