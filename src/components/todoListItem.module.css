@@ -4,3 +4,25 @@
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
+
+.trash-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.trashButton img {
+    width: 20px;
+    /* Размер иконки */
+    height: 20px;
+}
+
+.trashButton:hover {
+    transform: scale(1.2);
+}
+
+.trashButton:active {
+    transform: scale(0.9);
+}
